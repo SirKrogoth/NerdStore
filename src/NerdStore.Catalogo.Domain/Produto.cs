@@ -17,8 +17,9 @@ namespace NerdStore.Catalogo.Domain
         public string imagem { get; private set; }
         public int quantidadeEstoque { get; private set; }
         public Categoria categoria { get; private set; }
+        public Dimensoes dimensoes { get; private set; }
 
-        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem)
+        public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem, Dimensoes dimensoes)
         {
             this.categoriaId = categoriaId;
             this.nome = nome;
@@ -27,6 +28,7 @@ namespace NerdStore.Catalogo.Domain
             this.valor = valor;
             this.dataCadastro = dataCadastro;
             this.imagem = imagem;
+            this.dimensoes = dimensoes;
 
             Validar();
         }
@@ -66,10 +68,11 @@ namespace NerdStore.Catalogo.Domain
 
         public void Validar()
         {
-            Validacoes.ValidarSeVazio(nome, "O campo Nome do Produto não pode estar vazio, favor verifique.");
-            Validacoes.ValidarSeVazio(descricao, "O campo Descrição do Produto não pode estar vazio, favor verifique.");
-            Validacoes.ValidarSeVazio(imagem, "A Imagem do Produto não pode estar vazio, favor verifique.");
-            Validacoes.ValidarSeDiferente(categoriaId, Guid.Empty, "O campo Categoria do Produto não pode estar vazio.");
+            Validacoes.ValidarSeVazio(nome, "O campo Nome do produto não pode estar vazio");
+            Validacoes.ValidarSeVazio(descricao, "O campo Descricao do produto não pode estar vazio");
+            Validacoes.ValidarSeVazio(imagem, "O campo Imagem do produto não pode estar vazio");
+            //Validacoes.ValidarSeDiferente(categoriaId, Guid.Empty, "O campo CategoriaId do produto não pode estar vazio");
+            Validacoes.ValidarSeMenorQue(valor, 1, "O campo Valor do produto não pode se menor igual a 0");
             Validacoes.ValidarSeNulo(nome, "O campo Nome não pode ser null.");
         }
     }
