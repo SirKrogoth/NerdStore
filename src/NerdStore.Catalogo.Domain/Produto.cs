@@ -27,6 +27,8 @@ namespace NerdStore.Catalogo.Domain
             this.valor = valor;
             this.dataCadastro = dataCadastro;
             this.imagem = imagem;
+
+            Validar();
         }
 
         //AddRock Setter para alterar o valor da nossa propriedade
@@ -41,14 +43,15 @@ namespace NerdStore.Catalogo.Domain
 
         public void AlterarDescricao(string descricao)
         {
+            Validacoes.ValidarSeVazio(descricao, "O campo Descrição do produto não poderá estar vazio.");
             this.descricao = descricao;
         }
 
-        public void DebitarEstoque(int quantidadeEstoque)
+        public void DebitarEstoque(int quantidade)
         {
-            if (quantidadeEstoque < 0) quantidadeEstoque *= -1;
-
-            this.quantidadeEstoque -= quantidadeEstoque;
+            if (quantidade < 0) quantidade *= -1;
+            if(!PossuiEstoque(quantidade)) throw new DomainException("Estoque insuficiente.");
+            this.quantidadeEstoque -= quantidade;
         }
 
         public void ReporEstoque(int quantidadeEstoque)
@@ -63,7 +66,11 @@ namespace NerdStore.Catalogo.Domain
 
         public void Validar()
         {
-
+            Validacoes.ValidarSeVazio(nome, "O campo Nome do Produto não pode estar vazio, favor verifique.");
+            Validacoes.ValidarSeVazio(descricao, "O campo Descrição do Produto não pode estar vazio, favor verifique.");
+            Validacoes.ValidarSeVazio(imagem, "A Imagem do Produto não pode estar vazio, favor verifique.");
+            Validacoes.ValidarSeDiferente(categoriaId, Guid.Empty, "O campo Categoria do Produto não pode estar vazio.");
+            Validacoes.ValidarSeNulo(nome, "O campo Nome não pode ser null.");
         }
     }
 }

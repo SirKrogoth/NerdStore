@@ -13,12 +13,20 @@ namespace NerdStore.Catalogo.Domain
         public Categoria(string nome, int codigo)
         {
             this.nome = nome;
-            this.codigo = codigo;   
+            this.codigo = codigo;
+
+            Validar();
         }
 
         public override string ToString()
         {
             return $"{nome} - {codigo}";
+        }
+
+        public void Validar()
+        {
+            Validacoes.ValidarSeVazio(nome, "O campo Nome do Produto não pode estar vazio.");
+            Validacoes.ValidarSeIgual(codigo, 0,"O campo Código do Produto não pode ser zero.");
         }
     }
 }
