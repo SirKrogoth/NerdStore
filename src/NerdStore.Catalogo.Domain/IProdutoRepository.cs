@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NerdStore.Core.Data;
@@ -9,7 +10,7 @@ namespace NerdStore.Catalogo.Domain
     {
         //Métodos assincronos.
         Task<IEnumerable<Produto>> ObterTodos();
-        Task<Produto> ObterPorID();
+        Task<Produto> ObterPorID(Guid produtoId);
         Task<IEnumerable<Produto>> ObterPorCategoria(int codigo);
         Task<IEnumerable<Categoria>> ObterCategorias();
 

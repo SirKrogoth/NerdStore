@@ -26,9 +26,9 @@ namespace NerdStore.Catalogo.Data.Repository
             return await _context.Produtos.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Produto> ObterPorId(Guid id)
+        public async Task<Produto> ObterPorID(Guid produtoId)
         {
-            return await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.id == id);
+            return await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.id == produtoId);
         }
 
         public async Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
@@ -64,11 +64,6 @@ namespace NerdStore.Catalogo.Data.Repository
         public void Dispose()
         {
             _context?.Dispose();
-        }
-
-        public Task<Produto> ObterPorID()
-        {
-            throw new NotImplementedException();
         }
     }
 }
