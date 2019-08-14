@@ -12,9 +12,10 @@ namespace NerdStore.Catalogo.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<Produto, ProdutoViewModel>()
-                .ForMember(d => d.Largura, o => o.MapFrom(s => s.dimensoes.largura))
-                .ForMember(d => d.Altura, o => o.MapFrom(s => s.dimensoes.altura))
-                .ForMember(d => d.Profundidade, o => o.MapFrom(s => s.dimensoes.profundidade));
+                .ForMember(d => d.largura, o => o.MapFrom(s => s.dimensoes.largura))
+                .ForMember(d => d.altura, o => o.MapFrom(s => s.dimensoes.altura))
+                .ForMember(d => d.profundidade, o => o.MapFrom(s => s.dimensoes.profundidade));
+
             CreateMap<Categoria, CategoriaViewModel>();
         }
     }

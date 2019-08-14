@@ -12,8 +12,8 @@ namespace NerdStore.Catalogo.Application.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<ProdutoViewModel, Produto>()
-                .ConstructUsing(p => new Produto(p.Nome, p.Descricao, p.Ativo, p.Valor, p.CategoriaId, p.DataCadastro,
-                    p.Imagem, new Dimensoes(p.Altura, p.Largura, p.Profundidade)));
+                .ConstructUsing(p => new Produto(p.nome, p.descricao, p.ativo, p.valor, p.categoriaId, p.dataCadastro,
+                    p.imagem, new Dimensoes(p.altura, p.largura, p.profundidade)));
 
             CreateMap<CategoriaViewModel, Categoria>()
                 .ConstructUsing(c => new Categoria(c.Nome, c.Codigo));

@@ -19,6 +19,8 @@ namespace NerdStore.Catalogo.Domain
         public Categoria categoria { get; private set; }
         public Dimensoes dimensoes { get; private set; }
 
+        protected Produto(){}
+        
         public Produto(string nome, string descricao, bool ativo, decimal valor, Guid categoriaId, DateTime dataCadastro, string imagem, Dimensoes dimensoes)
         {
             this.categoriaId = categoriaId;
